@@ -1,0 +1,164 @@
+Cmp-Mod V01 Created by CvPcb (2014-jan-25)-product date = Thu 10 Mar 2016 03:18:05 PM EST
+
+BeginCmp
+TimeStamp = /56E1BDD8;
+Reference = IC1;
+ValeurCmp = ATMEGA328-P;
+IdModule  = Sockets_DIP:DIP-28__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1BD31;
+Reference = R1;
+ValeurCmp = 10K;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1C8EE;
+Reference = X1;
+ValeurCmp = 16 MHz;
+IdModule  = Crystals:Crystal_HC49-U_Vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1BBAF;
+Reference = U1;
+ValeurCmp = 7805;
+IdModule  = Discret:TO220_VERT;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CFFB;
+Reference = SW2;
+ValeurCmp = SW_PUSH;
+IdModule  = Connect:SIL-2;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1C43E;
+Reference = SW1;
+ValeurCmp = RESET;
+IdModule  = Discret:SW_PUSH_SMALL;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1D13D;
+Reference = R8;
+ValeurCmp = 10K;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CBEE;
+Reference = R7;
+ValeurCmp = 220;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1BE37;
+Reference = R6;
+ValeurCmp = 10K;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CBDA;
+Reference = R5;
+ValeurCmp = 220;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CBC6;
+Reference = R4;
+ValeurCmp = 220;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CBB2;
+Reference = R3;
+ValeurCmp = 220;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CB9E;
+Reference = R2;
+ValeurCmp = 220;
+IdModule  = Discret:R4;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1BB6F;
+Reference = C1;
+ValeurCmp = 10 uF;
+IdModule  = Discret:C1V5;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CB53;
+Reference = D6;
+ValeurCmp = BREAK;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CB3F;
+Reference = D5;
+ValeurCmp = SPRINT3;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CB2B;
+Reference = D4;
+ValeurCmp = SPRINT2;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CB17;
+Reference = D3;
+ValeurCmp = SPRINT1;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1CB03;
+Reference = D2;
+ValeurCmp = SPRINT0;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1BD17;
+Reference = D1;
+ValeurCmp = PWR;
+IdModule  = LEDs:LED-5MM;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1C94F;
+Reference = C4;
+ValeurCmp = 22 pF;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1C938;
+Reference = C3;
+ValeurCmp = 22 pF;
+IdModule  = Discret:C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /56E1BCAA;
+Reference = C2;
+ValeurCmp = 10 uF;
+IdModule  = Discret:C1V5;
+EndCmp
+
+EndListe

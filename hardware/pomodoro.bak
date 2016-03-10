@@ -495,9 +495,4 @@ F 3 "" H 7000 4300 60  0000 C CNN
 	1    7000 4300
 	1    0    0    -1  
 $EndComp
-Connection ~ 5450 900 
-Connection ~ 6250 900 
-Connection ~ 6250 1300
-Connection ~ 5450 1300
-Connection ~ 6900 1400
 $EndSCHEMATC
