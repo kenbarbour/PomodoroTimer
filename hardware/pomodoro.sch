@@ -385,35 +385,9 @@ Wire Wire Line
 	5700 3800 5400 3800
 Connection ~ 6300 3650
 Wire Wire Line
-	5400 5400 7650 5400
-Wire Wire Line
-	7650 5400 7650 4650
-Wire Wire Line
-	5400 5000 7550 5000
-Wire Wire Line
-	7550 5000 7550 4250
-Wire Wire Line
-	7550 4250 7650 4250
-Wire Wire Line
-	5400 5200 7450 5200
-Wire Wire Line
-	7450 5200 7450 3950
-Wire Wire Line
-	7450 3950 7650 3950
-Wire Wire Line
-	5400 5300 7350 5300
-Wire Wire Line
-	7350 5300 7350 3650
-Wire Wire Line
-	7350 3650 7650 3650
-Wire Wire Line
 	5400 3200 5550 3200
 Wire Wire Line
 	5550 3200 5550 3100
-Wire Wire Line
-	5550 3100 7650 3100
-Wire Wire Line
-	7650 3100 7650 3350
 $Comp
 L SW_PUSH SW2
 U 1 1 56E1CFFB
@@ -518,4 +492,34 @@ Connection ~ 8550 4650
 Connection ~ 8550 4250
 Connection ~ 8550 3950
 Connection ~ 8550 3650
+Wire Wire Line
+	5400 5000 6700 5000
+Wire Wire Line
+	6700 5000 6700 3350
+Wire Wire Line
+	6700 3350 7650 3350
+Wire Wire Line
+	5400 5200 6850 5200
+Wire Wire Line
+	6850 5200 6850 3650
+Wire Wire Line
+	6850 3650 7650 3650
+Wire Wire Line
+	5400 5300 7000 5300
+Wire Wire Line
+	7000 5300 7000 3950
+Wire Wire Line
+	7000 3950 7650 3950
+Wire Wire Line
+	5400 5400 7150 5400
+Wire Wire Line
+	7150 5400 7150 4250
+Wire Wire Line
+	7150 4250 7650 4250
+Wire Wire Line
+	5550 3100 7300 3100
+Wire Wire Line
+	7300 3100 7300 4650
+Wire Wire Line
+	7300 4650 7650 4650
 $EndSCHEMATC
