@@ -1,5 +1,7 @@
+#include <SoftwareSerial.h>
 #include <Time.h>
 #include <TimeLib.h>
+#include "Button.h"
 
 /*
  Pomodoro timer
@@ -13,15 +15,13 @@
  Components:
   * Green LED (x4)
   * Red LED
-  * Pushbutton (x2)
-  * 10K ohm Resistor (x2)
-  * 220 ohm Resistor (x4)
+  * 10K ohm Resistor
+  * 220 ohm Resistor (x5)
   
 */
 
 const int START_BUTTON_PIN = 2;
-const int STOP_BUTTON_PIN = 3;
-int LED_PINS[] = {4,5,6,7,8}; // Array of LED pins (TOTAL_SPRINTS + 1)
+int LED_PINS[] = {9,6,5,3,7}; // Array of LED pins (TOTAL_SPRINTS + 1)
 
 //-- Timer configuration
 // number of sprints before a big break
@@ -48,14 +48,17 @@ const int DEBUG = 1;
 int currentSprint = 0; // current sprint (zero based)
 int currentStatus = STATUS_BEFORE;
 time_t sprintStartTime = 0;
+Button* startButton;
 
 void setup() {
+  
+  Serial.begin(9600);
+  Serial.print("Initializing pins...\n");
   // initialize pins
   for (int i = 0; i <= TOTAL_SPRINTS; i++) {
     pinMode(LED_PINS[i], OUTPUT);
   }
-  pinMode(START_BUTTON_PIN, INPUT);
-  pinMode(STOP_BUTTON_PIN, INPUT);
+  startButton = new Button(START_BUTTON_PIN,BUTTON_MODE_PULLDOWN);
   
   // flash LEDS
   for (int i = 0; i < 3; i++) {
@@ -69,10 +72,8 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(START_BUTTON_PIN))
+  if (startButton->uniquePress())
     onStartPressed();
-  if (digitalRead(STOP_BUTTON_PIN))
-    onStopPressed();
     
   if (currentStatus == STATUS_SPRINT &&
     sprintStartTime + SPRINT_TIME >= now())
@@ -80,8 +81,11 @@ void loop() {
 }
 
 void onStartPressed() {
+  Serial.print("Start pressed\n");
+  delay(1000);
   switch (currentStatus) {
     case STATUS_BEFORE:
+      onStartSprint();
       break;    
     case STATUS_SPRINT:
       break;    
@@ -94,25 +98,13 @@ void onStartPressed() {
   }
 }
 
-void onStopPressed() {
-    switch (currentStatus) {
-    case STATUS_BEFORE:
-      break;    
-    case STATUS_SPRINT:
-      break;    
-    case STATUS_AFTER:
-      break;    
-    case STATUS_BREAK:
-      break;    
-    case STATUS_BIG_BREAK:
-      break;    
-  }
-}
 
 /**
  Starts the currentSprint if currentStatus is STATUS_BEFORE
  */
 void onStartSprint() {
+  
+  Serial.print("Starting sprint\n");
   
   if (currentStatus != STATUS_BEFORE)
     return;
@@ -122,7 +114,7 @@ void onStartSprint() {
     digitalWrite(LED_PINS[i], HIGH);
     
   // Flash current sprint
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 5; i++) {
     digitalWrite(LED_PINS[currentSprint],HIGH);
     delay(FLASH_DELAY);
     digitalWrite(LED_PINS[currentSprint],LOW);
@@ -138,6 +130,8 @@ void onStartSprint() {
  the currentStatus to STATUS_AFTER and incrementing the currentSprint
  */
 void onSprintComplete() {
+  
+  Serial.print("Sprint complete\n");
   if (currentStatus != STATUS_SPRINT)
     return;
   currentSprint++;
