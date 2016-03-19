@@ -1,7 +1,15 @@
+/**
+  Button
+  button.cpp
+  
+  Implementation for the arduino Button class.
+  @author Ken Barbour
+  @version 0.1 3/17/2016
+ */
 #include "Button.h"
 #include <Arduino.h>
 
-Button::Button(int buttonPin, int buttonMode) {
+Button::Button(const int buttonPin, const int buttonMode) {
   this->pin = buttonPin;
   this->mode = buttonMode;
   this->lastState = buttonMode;
@@ -21,8 +29,8 @@ int Button::stateChanged() {
 int Button::uniquePress() {
   return (this->stateChanged() && this->wasPressed());
 }
-int Button::readState(int state) {
-  if (this->mode == BUTTON_MODE_PULLDOWN)
+int Button::readState(const int state) {
+  if (this->mode == Button::MODE_PULLDOWN)
     return (state == HIGH);
   else return (state == LOW);
 }

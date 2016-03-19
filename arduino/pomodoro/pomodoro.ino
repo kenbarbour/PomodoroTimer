@@ -58,7 +58,7 @@ void setup() {
   for (int i = 0; i <= TOTAL_SPRINTS; i++) {
     pinMode(LED_PINS[i], OUTPUT);
   }
-  startButton = new Button(START_BUTTON_PIN,BUTTON_MODE_PULLDOWN);
+  startButton = new Button(START_BUTTON_PIN,Button::MODE_PULLDOWN);
   
   // flash LEDS
   for (int i = 0; i < 3; i++) {
