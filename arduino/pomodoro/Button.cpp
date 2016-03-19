@@ -7,30 +7,38 @@
   @version 0.1 3/17/2016
  */
 #include "Button.h"
-#include <Arduino.h>
 
 Button::Button(const int buttonPin, const int buttonMode) {
-  this->pin = buttonPin;
-  this->mode = buttonMode;
-  this->lastState = buttonMode;
-  pinMode(this->pin, INPUT);
+  pin = buttonPin;
+  mode = buttonMode;
+  lastState = buttonMode;
+  lastDebounceTime = 0;
+  pinMode(pin, INPUT);
 }
-int Button::isPressed() {
-  int inBtn = digitalRead(this->pin);
-  this->lastState = inBtn;
-  return this->readState(inBtn);
+bool Button::isPressed() {
+  int inBtn = digitalRead(pin);
+  if (inBtn != lastState)
+    lastDebounceTime = millis();
+  lastState = inBtn;
+  return isStatePressed(inBtn);
 }
-int Button::wasPressed() {
-  return readState(lastState);
+bool Button::wasPressed() {
+  return isStatePressed(lastState);
 }
-int Button::stateChanged() {
+bool Button::stateChanged() {
   return (this->wasPressed() != this->isPressed());
 }
-int Button::uniquePress() {
+bool Button::uniquePress() {
   return (this->stateChanged() && this->wasPressed());
 }
-int Button::readState(const int state) {
-  if (this->mode == Button::MODE_PULLDOWN)
+
+/**
+ * Determine if the provided state of the input pin is pressed
+ * based on the mode of the button
+ * @return bool
+ */
+bool Button::isStatePressed(const int state) {
+  if (this->mode == MODE_PULLDOWN)
     return (state == HIGH);
   else return (state == LOW);
 }

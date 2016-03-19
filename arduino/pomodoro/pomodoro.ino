@@ -1,6 +1,4 @@
 #include <SoftwareSerial.h>
-#include <Time.h>
-#include <TimeLib.h>
 #include "Button.h"
 
 /*
@@ -26,12 +24,12 @@ int LED_PINS[] = {9,6,5,3,7}; // Array of LED pins (TOTAL_SPRINTS + 1)
 //-- Timer configuration
 // number of sprints before a big break
 const int TOTAL_SPRINTS = 4;
-// time in seconds of a work sprint
-const int SPRINT_TIME = 25;
+// time in milliseconds of a work sprint
+const int SPRINT_TIME = 25000;
 // time in seconds of a break
-const int BREAK_TIME = 5;
+const int BREAK_TIME = 25000;
 // time in seconds of a big reward break
-const int BIG_BREAK_TIME = 30;
+const int BIG_BREAK_TIME = 25000;
 
 const int FLASH_DELAY = 100;
 const int FLASH_DELAY_QUICK = 25;
@@ -47,7 +45,7 @@ const int DEBUG = 1;
 // Declare vars
 int currentSprint = 0; // current sprint (zero based)
 int currentStatus = STATUS_BEFORE;
-time_t sprintStartTime = 0;
+unsigned long sprintStartTime = 0;
 Button* startButton;
 
 void setup() {
@@ -76,7 +74,7 @@ void loop() {
     onStartPressed();
     
   if (currentStatus == STATUS_SPRINT &&
-    sprintStartTime + SPRINT_TIME >= now())
+    sprintStartTime + SPRINT_TIME >= millis())
     onSprintComplete();
 }
 
@@ -122,7 +120,7 @@ void onStartSprint() {
   }
   
   currentStatus = STATUS_SPRINT;
-  sprintStartTime = now();
+  sprintStartTime = millis();
 }
 
 /**
@@ -146,7 +144,7 @@ void onStartBreak() {
   if (currentStatus != STATUS_AFTER)
     return;
     
-  sprintStartTime = now();
+  sprintStartTime = millis();
   if (currentSprint >= TOTAL_SPRINTS)
     currentStatus = STATUS_BIG_BREAK;
   else
