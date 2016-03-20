@@ -24,9 +24,9 @@ int LED_PINS[] = {9,6,5,3,7}; // Array of LED pins (TOTAL_SPRINTS + 1)
 
 //-- Timer configuration
 const int TOTAL_SPRINTS = 4;        // number of sprints before a big break
-const int SPRINT_TIME = 25*60000;   // millisecs of a work sprint
-const int BREAK_TIME = 5*60000;     // millisecs of a break
-const int BIG_BREAK_TIME = 30*60000;// millisecs of a big reward break
+const unsigned long SPRINT_TIME = 25*60000;     // millisecs of a work sprint
+const unsigned long BREAK_TIME = 5*60000;       // millisecs of a break
+const unsigned long BIG_BREAK_TIME = 30*60000;  // millisecs of a big reward break
 
 const int FLASH_DELAY = 100;        // millisec delay b/w LED toggles during flashing
 const int FLASH_DELAY_QUICK = 50;   // millisec delay b/w LED toggles during quick flashing
@@ -44,10 +44,10 @@ int currentSprint = 0;              // current sprint (zero based)
 int currentStatus = STATUS_BEFORE;  // current pomodoro state
 unsigned long sprintStartTime = 0;  // time (millisecs) current sprint/break started
 unsigned long lastDebounceTime = 0; // time (millisecs) button state last changed
+unsigned long lastFlashTime = 0;    // time (millisecs) flashing LEDs were last toggled
 int buttonState = LOW;              // current state of button
 int lastButtonState = LOW;          // state of button last time it was checked
-unsigned long lastFlashTime = 0;    // time (millisecs) flashing LEDs were last toggled
-unsigned long lastFlashState = LOW; // pin state of flashing LEDs when they were last toggled
+int lastFlashState = LOW; // pin state of flashing LEDs when they were last toggled
 
 // function prototypes
 void updateSprintLEDs();
