@@ -14,30 +14,39 @@
   * 220 ohm Resistor (x5)
   
 */
-#define DEBUG_POMODORO 1
-#ifdef DEBUG_POMODORO
+#define DEBUG_POMODORO 1  // Uncomment this line for Serial debugging (kinda)
+#define POMODORO
+#if DEBUG_POMODORO
 #include <SoftwareSerial.h>
 #endif
 
+//-- Pomodoro States
+#define STATUS_BEFORE 0
+#define STATUS_SPRINT 1
+#define STATUS_AFTER  2
+#define STATUS_BREAK  3
+#define STATUS_BIG_BREAK 4
+
+//-- Pin configuration
 const int BUTTON_PIN = 2;
 int LED_PINS[] = {9,6,5,3,7}; // Array of LED pins (TOTAL_SPRINTS + 1)
+const int TOTAL_SPRINTS = 4;        // number of sprints before a big break
 
 //-- Timer configuration
-const int TOTAL_SPRINTS = 4;        // number of sprints before a big break
+#ifdef DEBUG_POMODORO
+const unsigned long SPRINT_TIME = 5000;     // millisecs of a work sprint
+const unsigned long BREAK_TIME = 2500;       // millisecs of a break
+const unsigned long BIG_BREAK_TIME = 8000;  // millisecs of a big reward break
+#else
 const unsigned long SPRINT_TIME = 25*60000;     // millisecs of a work sprint
 const unsigned long BREAK_TIME = 5*60000;       // millisecs of a break
 const unsigned long BIG_BREAK_TIME = 30*60000;  // millisecs of a big reward break
+#endif
 
+//-- Misc Timing configuration
 const int FLASH_DELAY = 100;        // millisec delay b/w LED toggles during flashing
 const int FLASH_DELAY_QUICK = 50;   // millisec delay b/w LED toggles during quick flashing
 const int DEBOUNCE_DELAY = 50;      // min millisec delay b/w valid button state changes
-
-//-- Pomodoro States
-const int STATUS_BEFORE = 0;        // Before a sprint
-const int STATUS_SPRINT = 1;        // During a sprint
-const int STATUS_AFTER = 2;         // After a sprint
-const int STATUS_BREAK = 3;         // During a break
-const int STATUS_BIG_BREAK = 4;     // During a big break
 
 // Declare Globals
 int currentSprint = 0;              // current sprint (zero based)
@@ -52,7 +61,14 @@ int lastFlashState = LOW; // pin state of flashing LEDs when they were last togg
 // function prototypes
 void updateSprintLEDs();
 void handleButton();
+void onStartPressed();
+void startSprint();
+void restartSprint();
+void sprintComplete();
+void startBreak();
+void breakComplete();
 void handleState();
+void updateSprintLEDs();
 void debug(char*);
 
 void setup() {
