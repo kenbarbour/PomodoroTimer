@@ -29,7 +29,7 @@
 
 //-- Pin configuration
 const int BUTTON_PIN = 2;
-int LED_PINS[] = {9,6,5,3,7}; // Array of LED pins (TOTAL_SPRINTS + 1)
+int LED_PINS[] = {3,5,6,7,9}; // Array of LED pins (TOTAL_SPRINTS + 1)
 const int TOTAL_SPRINTS = 4;        // number of sprints before a big break
 
 //-- Timer configuration
